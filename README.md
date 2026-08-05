@@ -1,128 +1,165 @@
 # JWT Authentication API
 
-##  Proje Hakkında
+## Proje Hakkında
 
-Bu proje, .NET 8 Web API kullanılarak geliştirilen JWT tabanlı kimlik doğrulama sistemidir.
+Bu proje, ASP.NET Core 8 Web API kullanılarak geliştirilmiş JWT tabanlı bir kimlik doğrulama sistemidir. Projede kullanıcı kayıt ve giriş işlemleri, JWT erişim belirteci (Access Token), yenileme belirteci (Refresh Token) ve rol bazlı yetkilendirme (Role-Based Authorization) yapıları uygulanmıştır.
 
-Projede;
-
-- Kullanıcı kayıt işlemleri
-- Kullanıcı giriş işlemleri
-- JWT Authentication
-- Access Token
-- Refresh Token
-- Rol bazlı yetkilendirme (Role-Based Authorization)
-
-yapılarının geliştirilmesi hedeflenmektedir.
+Proje katmanlı mimari (Layered Architecture) yaklaşımıyla geliştirilmiş olup Repository Pattern ve Service Layer kullanılarak oluşturulmuştur.
 
 ---
 
-# 🚀 Kullanılan Teknolojiler
+## Kullanılan Teknolojiler
 
-- .NET 8 Web API
+- ASP.NET Core 8 Web API
 - Entity Framework Core
 - SQL Server
-- Swagger
-- JWT Authentication (Yakında)
+- JWT Bearer Authentication
+- BCrypt.Net
+- Swagger (OpenAPI)
+- Angular
+- CoreUI Angular
+- Dependency Injection
 
 ---
 
-# 📁 Proje Yapısı
+## Proje Yapısı
 
 ```
 JwtAuthenticationApi
 │
 ├── Controllers
-├── Models
 ├── Data
 ├── DTOs
-├── Services
 ├── Interfaces
+├── Migrations
+├── Models
 ├── Repositories
+├── Services
+└── Program.cs
 ```
 
 ---
 
-# ✅ Bugüne Kadar Yapılanlar
+## Uygulanan Özellikler
 
-## 1. Proje Oluşturuldu
-
-- .NET 8 Web API projesi oluşturuldu.
-- Swagger aktif edildi.
-- Authentication Type = None seçildi.
-
----
-
-## 2. Entity Framework Core Kuruldu
-
-Kurulan paketler:
-
-- Microsoft.EntityFrameworkCore
-- Microsoft.EntityFrameworkCore.SqlServer
-- Microsoft.EntityFrameworkCore.Tools
+- Kullanıcı kayıt işlemleri
+- Kullanıcı giriş işlemleri
+- JWT Authentication
+- Access Token oluşturma
+- Refresh Token oluşturma
+- Refresh Token ile yeni Access Token üretme
+- Rol bazlı yetkilendirme
+- BCrypt ile parola şifreleme
+- Entity Framework Core kullanılarak veritabanı işlemleri
+- Repository Pattern
+- Service Layer
+- Swagger üzerinden API testleri
+- Angular ile giriş ekranı entegrasyonu
 
 ---
 
-## 3. Proje Klasör Yapısı Oluşturuldu
+## Mimari Yapı
 
-Oluşturulan klasörler:
+Proje aşağıdaki katmanlı mimari yapısına göre geliştirilmiştir.
 
-- Controllers
-- Models
-- Data
-- DTOs
-- Services
-- Interfaces
-- Repositories
-
----
-
-## 4. Entity Sınıfları Oluşturuldu
-
-Oluşturulan entityler:
-
-- User
-- Role
-- UserRole
+```
+Controller
+      │
+      ▼
+Service
+      │
+      ▼
+Repository
+      │
+      ▼
+SQL Server
+```
 
 ---
 
-## 5. ApplicationDbContext Oluşturuldu
+## Kimlik Doğrulama Akışı
 
-ApplicationDbContext içerisine;
+```
+Kullanıcı Girişi
+        │
+        ▼
+Kullanıcı Bilgilerinin Doğrulanması
+        │
+        ▼
+JWT Access Token Oluşturulması
+        │
+        ▼
+Yetkili Endpointlere Erişim
+        │
+        ▼
+Access Token Süresi Dolarsa
+        │
+        ▼
+Refresh Token Kullanılması
+        │
+        ▼
+Yeni Access Token Oluşturulması
+```
+
+---
+
+## API Endpointleri
+
+| HTTP Metodu | Endpoint | Açıklama |
+|-------------|----------|----------|
+| POST | /api/Auth/register | Yeni kullanıcı kaydı |
+| POST | /api/Auth/login | Kullanıcı girişi |
+| POST | /api/Auth/refresh | Access Token yenileme |
+| GET | /api/Auth/admin | Admin yetkisi gerektiren endpoint |
+
+---
+
+## Veritabanı
+
+Projede aşağıdaki tablolar kullanılmaktadır.
 
 - Users
 - Roles
 - UserRoles
 
-DbSet'leri eklendi.
+---
+
+## Güvenlik
+
+- JWT Bearer Authentication
+- Refresh Token Mekanizması
+- BCrypt ile parola şifreleme
+- Role-Based Authorization
+- Güvenli parola saklama
 
 ---
 
-# 📚 Bugün Öğrenilen Konular
+## Ekran Görüntüleri
 
-- Entity nedir?
-- DbContext nedir?
-- DbSet nedir?
-- Property nedir?
-- Constructor nedir?
-- DbContextOptions ne işe yarar?
-- base(options) neden kullanılır?
-- Navigation Property nedir?
-- Code First yaklaşımı nedir?
+Bu bölümde aşağıdaki ekran görüntülerine yer verilebilir.
+
+- Swagger
+- Login
+- Dashboard
+- SQL Server tabloları
 
 ---
 
-# 📅 Sonraki Adımlar
+## Gelecekte Yapılabilecek Geliştirmeler
 
-- SQL Server bağlantısını yapmak
-- Connection String eklemek
-- Program.cs yapılandırması
-- İlk Migration oluşturmak
-- Veritabanını oluşturmak
-- Register API
-- Login API
-- JWT Authentication
-- Access Token
-- Refresh Token
-- Role Based Authorization
+- Kullanıcı profil yönetimi
+- Şifre sıfırlama
+- E-posta doğrulama
+- Docker desteği
+- Unit Test
+- CI/CD Pipeline
+
+---
+
+## Geliştirici
+
+Murat Dahi
+
+Bilgisayar Mühendisliği Öğrencisi
+
+Bartın Üniversitesi
