@@ -16,5 +16,6 @@
 
         public DateTime? RefreshTokenExpireDate { get; set; }
 
+        public ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using JwtAuthenticationApi.DTOs;
 using JwtAuthenticationApi.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JwtAuthenticationApi.Controllers
@@ -29,6 +30,21 @@ namespace JwtAuthenticationApi.Controllers
             var token = await _authService.LoginAsync(request);
 
             return Ok(token);
+        }
+
+        [HttpPost("refresh")]
+        public async Task<IActionResult> Refresh([FromBody] string refreshToken)
+        {
+            var token = await _authService.RefreshTokenAsync(refreshToken);
+
+            return Ok(token);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("admin")]
+        public IActionResult Admin()
+        {
+            return Ok("Admin paneline hoş geldiniz.");
         }
     }
 }

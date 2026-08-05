@@ -7,5 +7,7 @@ namespace JwtAuthenticationApi.Interfaces
         Task RegisterAsync(RegisterRequestDto request);
 
         Task<TokenResponseDto> LoginAsync(LoginRequestDto request);
+
+        Task<TokenResponseDto> RefreshTokenAsync(string refreshToken);
     }
 }

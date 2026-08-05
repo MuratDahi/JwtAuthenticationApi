@@ -7,5 +7,9 @@ namespace JwtAuthenticationApi.Interfaces
         Task AddUserAsync(User user);
 
         Task<User?> GetUserByEmailAsync(string email);
+
+        Task UpdateUserAsync(User user);
+
+        Task<User?> GetUserByRefreshTokenAsync(string refreshToken);
     }
 }
