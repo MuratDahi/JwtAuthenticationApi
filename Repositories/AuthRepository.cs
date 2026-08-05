@@ -25,5 +25,11 @@ namespace JwtAuthenticationApi.Repositories
             return await _context.Users
                 .FirstOrDefaultAsync(x => x.Email == email);
         }
+
+        public async Task UpdateUserAsync(User user)
+        {
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+        }
     }
 }

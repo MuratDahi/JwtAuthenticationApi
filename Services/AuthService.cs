@@ -31,5 +31,10 @@ namespace JwtAuthenticationApi.Services
 
             await _authRepository.AddUserAsync(user);
         }
+
+        public async Task<TokenResponseDto> LoginAsync(LoginRequestDto request)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
